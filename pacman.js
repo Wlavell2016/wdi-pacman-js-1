@@ -33,6 +33,8 @@ var clyde = {
     Character: 'Shadow',
     edible:'false'
 };
+
+var ghosts = [inky, blinky, pinky, clyde]
 // replace this comment with your four ghosts setup as objects
 
 
@@ -57,6 +59,9 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  ghosts.forEach(function(item){
+    console.log('( '+ (ghosts.indexOf(item)+1) +' )' + 'Eat ' + item.name)
+  })
   console.log('(q) Quit');
 }
 
@@ -65,6 +70,11 @@ function displayPrompt() {
   process.stdout.write('\nWaka Waka :v '); // :v is the Pac-Man emoji.
 }
 
+// Menu Options
+// function eatInky() {
+//   console.log('\nChomp!');
+//   score += 10;
+// }
 
 // Menu Options
 function eatDot() {
@@ -72,20 +82,39 @@ function eatDot() {
   score += 10;
 }
 
+function eatGhost(ghost){
+  console.log('\nChomp!'+ ghost.name);
+  score += 10;
+}
+
 
 // Process Player's Input
 function processInput(key) {
+ghosts.forEach(function(item){
   switch(key) {
     case '\u0003': // This makes it so CTRL-C will quit the program
     case 'q':
-      process.exit();
-      break;
+        process.exit();
+        break;
+        case '1':
+            eatGhost(item.name);
+            break;
+        case '2':
+            eatGhost(item.name);
+            break;
+        case '3':
+            eatGhost(item.name);
+            break;
+        case '4':
+            eatGhost(item.name);
+            break;
     case 'd':
       eatDot();
       break;
     default:
       console.log('\nInvalid Command!');
   }
+});
 }
 
 
